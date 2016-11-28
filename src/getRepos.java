@@ -13,11 +13,11 @@ import java.io.IOException;
 public class getRepos {
 
 
-    private String REMOTE_URL;
 
 
 
-   public Repository getRepos(String remote_url) throws java.io.IOException, org.eclipse.jgit.api.errors.GitAPIException {
+
+   public Repository getReposit(String remote_url) throws java.io.IOException, org.eclipse.jgit.api.errors.GitAPIException {
 
 
        File localPath = File.createTempFile("TestGitRepository", "");
@@ -27,7 +27,7 @@ public class getRepos {
            throw new IOException("Could not delete temporary file " + localPath);
 
        }
-       REMOTE_URL=remote_url;
+      String REMOTE_URL=remote_url;
        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
 
 

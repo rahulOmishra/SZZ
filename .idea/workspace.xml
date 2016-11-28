@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c5d8a43-e0b9-4aa7-b750-12ada3fc5521" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Commits.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/getRepos.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SZZ/BugCommit.class" afterPath="$PROJECT_DIR$/out/production/SZZ/BugCommit.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BugCommit.java" afterPath="$PROJECT_DIR$/src/BugCommit.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/getRepos.java" afterPath="$PROJECT_DIR$/src/getRepos.java" />
     </list>
     <ignored path="SZZ.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,8 +29,8 @@
       <file leaf-file-name="BugCommit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+            <state relative-caret-position="202">
+              <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -47,8 +42,8 @@
       <file leaf-file-name="getRepos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/getRepos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="248">
+              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,8 +88,8 @@
         <option value="$PROJECT_DIR$/src/bugCommit.java" />
         <option value="$PROJECT_DIR$/src/Repository.java" />
         <option value="$PROJECT_DIR$/src/getRepository.java" />
-        <option value="$PROJECT_DIR$/src/getRepos.java" />
         <option value="$PROJECT_DIR$/src/Commits.java" />
+        <option value="$PROJECT_DIR$/src/getRepos.java" />
         <option value="$PROJECT_DIR$/src/BugCommit.java" />
       </list>
     </option>
@@ -469,7 +464,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480312736741</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Changed the way of storing commits.">
+      <created>1480327120877</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1480327120877</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TodoView">
@@ -524,7 +526,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Object id for insertion and deletion." />
-    <option name="LAST_COMMIT_MESSAGE" value="Object id for insertion and deletion." />
+    <MESSAGE value="Changed the way of storing commits." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed the way of storing commits." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -561,8 +564,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/getRepos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+        <state relative-caret-position="248">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -571,8 +574,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="195" column="0" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+        <state relative-caret-position="202">
+          <caret line="181" column="0" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
