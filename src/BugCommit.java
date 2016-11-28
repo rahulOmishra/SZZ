@@ -45,6 +45,7 @@ import org.apache.commons.lang3.*;
 import java.lang.*;
 import com.gitblit.utils.DiffStatFormatter;
 import org.eclipse.jgit.revwalk.RevObject;
+import java.util.stream.Stream;
 
 
 
@@ -228,23 +229,37 @@ public class BugCommit {
                 }
                 System.out.println("no of commits::"+commit_list.size());
 
-                System.out.println(commit_list.get(1).Commit_hash_id+ commit_list.get(1).Committer+commit_list.get(1).Message);
+
                 bf_input.close();
 
 
                 String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
                 BufferedWriter bf_out = new BufferedWriter(new FileWriter(output_file));
 
-                for (int i = 0; i < content1.length; i++) {
+                for (int i = 0; i < commit_list.size(); i++) {
                     Matcher Mt = Pattern.compile("(\\s*)(fixes|fixed|closed|closes)(\\s*)").matcher(content1[i]);
-                    if (Mt.find()) {
+                    if (commit_list.get(i).Message.contains("fixes")||commit_list.get(i).Message.contains("fixed")||commit_list.get(i).Message.contains("closed")||commit_list.get(i).Message.contains("closed")) {
 
 
-                        bf_out.write(content1[i] + "\n");
+                        System.out.println(commit_list.get(i).Commit_hash_id+ commit_list.get(i).Committer+commit_list.get(i).Message);
                     }
 
                 }
                 bf_out.close();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 ObjectId oldHead = repository.resolve("HEAD^^^^{tree}");
                 ObjectId head = repository.resolve("HEAD^{tree}");
 
