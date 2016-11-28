@@ -1,6 +1,7 @@
-/**
+package SZZ; /**
  * Created by usi on 11/15/16.
  */
+
 
 
 import java.io.File;
@@ -218,16 +219,16 @@ public class BugCommit {
 //                String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
 
                for (int i = 0; i < commit_list.size(); i++) {
-                    if (commit_list.get(i).Message.contains("fixes") || commit_list.get(i).Message.contains("fixed") || commit_list.get(i).Message.contains("closed") || commit_list.get(i).Message.contains("closed")) {
+                    if (commit_list.get(i).getMessage().contains("fixes") || commit_list.get(i).getMessage().contains("fixed") || commit_list.get(i).getMessage().contains("closed") || commit_list.get(i).getMessage().contains("closed")) {
 
 
-                        System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).Commit_hash_id + "  Committer:   "+ commit_list.get(i).Committer.getName() + "  Commit_message:  " + commit_list.get(i).Message);
+                        System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).getHash_id() + "  Committer:   "+ commit_list.get(i).getCommitter().getName() + "  Commit_message:  " + commit_list.get(i).getMessage());
 
 
                         List<PathChangeModel> plist = new ArrayList<>();
 
                         RevWalk walk1 = new RevWalk(repository);
-                        ObjectId id1 = repository.resolve(commit_list.get(i).Commit_hash_id);
+                        ObjectId id1 = repository.resolve(commit_list.get(i).getHash_id());
                         RevCommit commitAgain1 = walk1.parseCommit(id1);
                         plist = getFilesInCommit(repository, commitAgain1, true);
 

@@ -1,3 +1,5 @@
+package SZZ;
+
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 
