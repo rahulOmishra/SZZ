@@ -56,7 +56,7 @@ public class BugCommit {
     private static final String REMOTE_URL = "https://github.com/eclipse/che.git";
 
 
-    public static boolean hasCommits(Repository repository) throws java.lang.NullPointerException{
+    public static boolean hasCommits(Repository repository) throws java.lang.NullPointerException, org.eclipse.jgit.errors.MissingObjectException{
         if (repository != null && repository.getDirectory().exists()) {
             return (new File(repository.getDirectory(), "objects").list().length > 2)
                     || (new File(repository.getDirectory(), "objects/pack").list().length > 0);
@@ -132,7 +132,7 @@ public class BugCommit {
         }
         return object;
     }
-    public static List<PathChangeModel> getFilesInCommit(Repository repository, RevCommit commit, boolean calculateDiffStat) throws java.lang.Exception {
+    public static List<PathChangeModel> getFilesInCommit(Repository repository, RevCommit commit, boolean calculateDiffStat) throws java.lang.Exception  {
         List<PathChangeModel> list = new ArrayList<>();
 
         RevWalk rw = new RevWalk(repository);
@@ -175,11 +175,16 @@ public class BugCommit {
                     list.add(pcm);
                 }
             }
-        }  finally {
-            rw.dispose();
+        }  catch (RevisionSyntaxException | org.eclipse.jgit.errors.MissingObjectException | GitAPIException  e) {
+            e.printStackTrace();
         }
+
+
+            rw.dispose();
         return list;
     }
+
+
 
 
 
@@ -230,17 +235,17 @@ public class BugCommit {
 
 //                String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
 
-                for (int i = 0; i < commit_list.size(); i++) {
+               for (int i = 0; i < commit_list.size(); i++) {
                     if (commit_list.get(i).Message.contains("fixes") || commit_list.get(i).Message.contains("fixed") || commit_list.get(i).Message.contains("closed") || commit_list.get(i).Message.contains("closed")) {
 
 
-                        System.out.println(commit_list.get(i).Commit_hash_id + commit_list.get(i).Committer + commit_list.get(i).Message);
+                        System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).Commit_hash_id + "  Committer:   "+ commit_list.get(i).Committer + "  Commit_message:  " + commit_list.get(i).Message);
 
 
                         List<PathChangeModel> plist = new ArrayList<>();
 
                         RevWalk walk1 = new RevWalk(repository);
-                        ObjectId id1 = repository.resolve("commit_list.get(i).Commit_hash_id");
+                        ObjectId id1 = repository.resolve(commit_list.get(i).Commit_hash_id);
                         RevCommit commitAgain1 = walk1.parseCommit(id1);
                         plist = getFilesInCommit(repository, commitAgain1, true);
 
@@ -250,8 +255,8 @@ public class BugCommit {
                             System.out.println(plist.get(j).objectId);
 
 
-                            System.out.println(plist.get(j).deletions + ":deletions" + "file_no:" + j);
-                            System.out.println(plist.get(j).insertions + ":insertions" + "file_no:" + j);
+                            System.out.println("deletions:   " + plist.get(j).deletions +  "    file_no:  " + j);
+                            System.out.println("insertions:   " + plist.get(j).insertions + "   file_no:  " + j);
 
 
                         }
@@ -287,7 +292,7 @@ public class BugCommit {
                     RevWalk walk = new RevWalk(repository);
                     ObjectId id = repository.resolve("151b5a2c9d786e086bff228193e0610a5ee4ec1b");
                     RevCommit commitAgain = walk.parseCommit(id);
-                    System.out.println("Found Commit again: " + commitAgain.getFullMessage());
+                   // System.out.println("Found Commit again: " + commitAgain.getFullMessage());
 
                     walk.dispose();
 
@@ -302,7 +307,7 @@ public class BugCommit {
 //                        ObjectId objectId = treeWalk.getObjectId(0);
 //                        ObjectLoader loader = repository.open(objectId);
                         ObjectLoader loader = repository.open(tree.getId());
-                        loader.copyTo(System.out);
+                       // loader.copyTo(System.out);
                     }
 
                     walk.dispose();
@@ -388,15 +393,15 @@ public class BugCommit {
                             diffText.add(out.toString("UTF-8"));
                             out.reset();
                         } catch (IOException e) {
-                            e.printStackTrace();
+                           e.printStackTrace();
                         }
 
                     }
                     for (int i = 0; i < diffs.size(); i++) {
-                        System.out.println(diffText.get(i));
+                        //System.out.println(diffText.get(i));
 
 
-                        System.out.println(i);
+                       // System.out.println(i);
 
                     }
 
@@ -421,7 +426,7 @@ public class BugCommit {
 
 
                 }
-            }
+    }
         }
 
 

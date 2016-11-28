@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c5d8a43-e0b9-4aa7-b750-12ada3fc5521" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/SZZ/BugCommit.class" afterPath="$PROJECT_DIR$/out/production/SZZ/BugCommit.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/BugCommit.java" afterPath="$PROJECT_DIR$/src/BugCommit.java" />
     </list>
@@ -30,8 +31,8 @@
       <file leaf-file-name="BugCommit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+            <state relative-caret-position="179">
+              <caret line="241" column="192" selection-start-line="241" selection-start-column="192" selection-end-line="241" selection-end-column="192" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -495,7 +496,21 @@
       <option name="project" value="LOCAL" />
       <updated>1480336980847</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="removed some  unnecessary statements.">
+      <created>1480337132475</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1480337132475</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Printing commit attributes and changes (insertions and deletions) together.">
+      <created>1480338355842</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1480338355842</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -518,7 +533,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.041134752" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28652483" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -554,7 +569,9 @@
     <MESSAGE value="Changed the appropriate class name." />
     <MESSAGE value="Removed some commented lines." />
     <MESSAGE value="removed the file output and input for filtering out bug fixing commits." />
-    <option name="LAST_COMMIT_MESSAGE" value="removed the file output and input for filtering out bug fixing commits." />
+    <MESSAGE value="removed some  unnecessary statements." />
+    <MESSAGE value="Printing commit attributes and changes (insertions and deletions) together." />
+    <option name="LAST_COMMIT_MESSAGE" value="Printing commit attributes and changes (insertions and deletions) together." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -609,8 +626,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
+        <state relative-caret-position="179">
+          <caret line="241" column="192" selection-start-line="241" selection-start-column="192" selection-end-line="241" selection-end-column="192" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
