@@ -195,22 +195,22 @@ public class BugCommit {
         File input_file = new File("/Users/usi/Desktop/commits.txt");
 
         File output_file = new File("/Users/usi/Desktop/bugCommit.txt");
-
-        File localPath = File.createTempFile("TestGitRepository", "");
-
-        if (!localPath.delete()) {
-
-            throw new IOException("Could not delete temporary file " + localPath);
-
-        }
-
-        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
-
-
-        try (Git result = Git.cloneRepository()
-                .setURI(REMOTE_URL)
-                .setDirectory(localPath)
-                .call()) {
+//
+//        File localPath = File.createTempFile("TestGitRepository", "");
+//
+//        if (!localPath.delete()) {
+//
+//            throw new IOException("Could not delete temporary file " + localPath);
+//
+//        }
+//
+//        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
+//
+//
+//        try (Git result = Git.cloneRepository()
+//                .setURI(REMOTE_URL)
+//                .setDirectory(localPath)
+//                .call()) {
 
 
             Repository repository;
@@ -238,6 +238,7 @@ public class BugCommit {
 
                     count++;
                 }
+                System.out.println();
                 bf_input.close();
 
 
@@ -247,6 +248,8 @@ public class BugCommit {
                 for (int i = 0; i < content1.length; i++) {
                     Matcher Mt = Pattern.compile("(\\s*)(fixes|fixed|closed|closes)(\\s*)").matcher(content1[i]);
                     if (Mt.find()) {
+
+
                         bf_out.write(content1[i] + "\n");
                     }
 
@@ -353,7 +356,7 @@ public class BugCommit {
 
                     ByteArrayOutputStream out1 = new ByteArrayOutputStream();
                     DiffFormatter df1 = new DiffFormatter(out1);
-                    // df.setRepository(git.getRepository());
+                    // df.setRepository(git.getRepos());
                     df.setRepository(repository);
                     ArrayList<String> diffText = new ArrayList<>();
                     for (DiffEntry diff : diffs) {
