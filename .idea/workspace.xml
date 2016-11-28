@@ -30,8 +30,8 @@
       <file leaf-file-name="BugCommit.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="735">
-              <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="480">
+              <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -488,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1480335256164</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="removed the file output and input for filtering out bug fixing commits.">
+      <created>1480336980847</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1480336980847</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TodoView">
@@ -546,7 +553,8 @@
     <MESSAGE value="Changed the way of storing commits." />
     <MESSAGE value="Changed the appropriate class name." />
     <MESSAGE value="Removed some commented lines." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed some commented lines." />
+    <MESSAGE value="removed the file output and input for filtering out bug fixing commits." />
+    <option name="LAST_COMMIT_MESSAGE" value="removed the file output and input for filtering out bug fixing commits." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -601,8 +609,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BugCommit.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="252" column="0" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+        <state relative-caret-position="480">
+          <caret line="235" column="0" selection-start-line="235" selection-start-column="0" selection-end-line="235" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />

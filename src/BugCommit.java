@@ -230,14 +230,11 @@ public class BugCommit {
                 System.out.println("no of commits::"+commit_list.size());
 
 
-                bf_input.close();
 
 
-                String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
-                BufferedWriter bf_out = new BufferedWriter(new FileWriter(output_file));
+//                String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
 
                 for (int i = 0; i < commit_list.size(); i++) {
-                    Matcher Mt = Pattern.compile("(\\s*)(fixes|fixed|closed|closes)(\\s*)").matcher(content1[i]);
                     if (commit_list.get(i).Message.contains("fixes")||commit_list.get(i).Message.contains("fixed")||commit_list.get(i).Message.contains("closed")||commit_list.get(i).Message.contains("closed")) {
 
 
@@ -245,7 +242,6 @@ public class BugCommit {
                     }
 
                 }
-                bf_out.close();
 
 
 
