@@ -214,7 +214,7 @@ public class BugCommit {
 
 
 
-            Repository repository = new getRepos().getReposit(REMOTE_URL);
+            Repository repository = new Get_repository().getReposit(REMOTE_URL);
 
 
 
@@ -229,19 +229,25 @@ public class BugCommit {
 
             try (Git git = new Git(repository)) {
 
+
+                Commit_ready cr = new Commit_ready("","","'");
+
+
                 Iterable<RevCommit> All_commit = git.log().all().call();
-                List<Commits> commit_list = new ArrayList<>();
+                List<Commit_ready> commit_list = new ArrayList<>();
                 int count = 0;
                 for (RevCommit commit : All_commit) {
                    // bf_input.write("Commit hash-id: " + commit.getName() + "    Committer:" + commit.getCommitterIdent() + "    message:" + commit.getFullMessage() + "\n");
 
 
-                   commit_list.add(count,new Commits(commit.getName(),commit.getCommitterIdent().toString(),commit.getFullMessage()));
+                    commit_list.add(count,new Commit_ready(commit.getName(),commit.getCommitterIdent().toString(),commit.getFullMessage()));
 
 
                     count++;
                 }
-                System.out.println();
+                System.out.println("no of commits::"+commit_list.size());
+
+                System.out.println(commit_list.get(1));
                 bf_input.close();
 
 
