@@ -212,10 +212,6 @@ public class BugCommit {
 
             try (Git git = new Git(repository)) {
 
-
-                Commit_ready cr = new Commit_ready("","","'");
-
-
                 Iterable<RevCommit> All_commit = git.log().all().call();
                 List<Commit_ready> commit_list = new ArrayList<>();
                 int count = 0;
@@ -235,16 +231,36 @@ public class BugCommit {
 //                String[] content1 = FileUtils.readFileToString(input_file, Charset.forName("utf-8")).split("\n");
 
                 for (int i = 0; i < commit_list.size(); i++) {
-                    if (commit_list.get(i).Message.contains("fixes")||commit_list.get(i).Message.contains("fixed")||commit_list.get(i).Message.contains("closed")||commit_list.get(i).Message.contains("closed")) {
+                    if (commit_list.get(i).Message.contains("fixes") || commit_list.get(i).Message.contains("fixed") || commit_list.get(i).Message.contains("closed") || commit_list.get(i).Message.contains("closed")) {
 
 
-                        System.out.println(commit_list.get(i).Commit_hash_id+ commit_list.get(i).Committer+commit_list.get(i).Message);
+                        System.out.println(commit_list.get(i).Commit_hash_id + commit_list.get(i).Committer + commit_list.get(i).Message);
+
+
+                        List<PathChangeModel> plist = new ArrayList<>();
+
+                        RevWalk walk1 = new RevWalk(repository);
+                        ObjectId id1 = repository.resolve("commit_list.get(i).Commit_hash_id");
+                        RevCommit commitAgain1 = walk1.parseCommit(id1);
+                        plist = getFilesInCommit(repository, commitAgain1, true);
+
+
+                        for (int j = 0; j < plist.size(); j++) {
+
+                            System.out.println(plist.get(j).objectId);
+
+
+                            System.out.println(plist.get(j).deletions + ":deletions" + "file_no:" + j);
+                            System.out.println(plist.get(j).insertions + ":insertions" + "file_no:" + j);
+
+
+                        }
+
+             walk1.dispose();
                     }
 
+
                 }
-
-
-
 
 
 
@@ -385,21 +401,6 @@ public class BugCommit {
                     }
 
 
-                    List<PathChangeModel> plist = new ArrayList<>();
-
-                    RevWalk walk1 = new RevWalk(repository);
-                    ObjectId id1 = repository.resolve("151b5a2c9d786e086bff228193e0610a5ee4ec1b");
-                    RevCommit commitAgain1 = walk1.parseCommit(id1);
-                    plist = getFilesInCommit(repository, commitAgain1, true);
-
-
-                    for (int i = 0; i < plist.size(); i++) {
-
-                        System.out.println(plist.get(i).objectId);
-
-
-                        System.out.println(plist.get(i).deletions + ":deletions" + i);
-                        System.out.println(plist.get(i).insertions + ":insertions" + i);
 
 
 
@@ -417,13 +418,12 @@ public class BugCommit {
                     }
 
 
-                    walk.dispose();
 
 
                 }
             }
         }
-    }
+
 
 
 
