@@ -2,30 +2,27 @@
  * Created by usi on 11/28/16.
  */
 
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.lib.PersonIdent;
 
 public class Commit_ready {
 
-public String Commit_hash_id;
+private String hash_id;
 
-public String Committer;
+private PersonIdent committer;
 
-public String Message;
-
-
+private String message;
 
 
 
-public Commit_ready(String commit_hash_id, String committer, String message)
+
+
+public Commit_ready(String hash_id, PersonIdent committer, String message)
 {
 
 
-    Commit_hash_id=commit_hash_id;
-    Committer=committer;
-    Message=message;
+    hash_id=hash_id;
+    committer=committer;
+    message=message;
 
 
 }

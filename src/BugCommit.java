@@ -12,10 +12,6 @@ import java.io.IOException;
 import org.eclipse.jgit.transport.FetchResult;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import org.apache.commons.io.FileUtils;
-import java.nio.charset.Charset;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
@@ -45,7 +41,6 @@ import org.apache.commons.lang3.*;
 import java.lang.*;
 import com.gitblit.utils.DiffStatFormatter;
 import org.eclipse.jgit.revwalk.RevObject;
-import java.util.stream.Stream;
 
 
 
@@ -141,19 +136,6 @@ public class BugCommit {
                 ObjectId object = getDefaultBranch(repository);
                 commit = rw.parseCommit(object);
             }
-
-            if (commit.getParentCount() == 0) {
-                TreeWalk tw = new TreeWalk(repository);
-                tw.reset();
-                tw.setRecursive(true);
-                tw.addTree(commit.getTree());
-//                while (tw.next()) {
-//                    list.add(new PathChangeModel(tw.getPathString(), tw.getPathString(), 0, tw
-//                            .getRawMode(0), tw.getObjectId(0).getName(), commit.getId().getName(),
-//                            ChangeType.ADD));
-//                }
-                tw.close();
-            } else {
                 RevCommit parent = rw.parseCommit(commit.getParent(0).getId());
                 DiffStatFormatter df = new DiffStatFormatter(commit.getName(), repository);
                 df.setRepository(repository);
@@ -174,7 +156,7 @@ public class BugCommit {
                     }
                     list.add(pcm);
                 }
-            }
+
         }  catch (RevisionSyntaxException | org.eclipse.jgit.errors.MissingObjectException | GitAPIException  e) {
             e.printStackTrace();
         }
@@ -223,7 +205,7 @@ public class BugCommit {
                 for (RevCommit commit : All_commit) {
 
 
-                    commit_list.add(count,new Commit_ready(commit.getName(),commit.getCommitterIdent().toString(),commit.getFullMessage()));
+                    commit_list.add(count,new Commit_ready(commit.getName(),commit.getCommitterIdent(),commit.getFullMessage()));
 
 
                     count++;
@@ -239,7 +221,7 @@ public class BugCommit {
                     if (commit_list.get(i).Message.contains("fixes") || commit_list.get(i).Message.contains("fixed") || commit_list.get(i).Message.contains("closed") || commit_list.get(i).Message.contains("closed")) {
 
 
-                        System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).Commit_hash_id + "  Committer:   "+ commit_list.get(i).Committer + "  Commit_message:  " + commit_list.get(i).Message);
+                        System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).Commit_hash_id + "  Committer:   "+ commit_list.get(i).Committer.getName() + "  Commit_message:  " + commit_list.get(i).Message);
 
 
                         List<PathChangeModel> plist = new ArrayList<>();
