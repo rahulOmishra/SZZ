@@ -391,7 +391,7 @@ public class BugCommit {
 
                     for (int i = 0; i < plist.size(); i++) {
 
-                        System.out.println(plist.get(i).objectId. + i);
+                        System.out.println(plist.get(i).objectId + i);
 
 
                         System.out.println(plist.get(i).deletions + ":deletions" + i);
