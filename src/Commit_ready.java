@@ -7,19 +7,19 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
-public class Commits {
+public class Commit_ready {
 
-private String Commit_hash_id;
+public String Commit_hash_id;
 
-private String Committer;
+public String Committer;
 
-private String Message;
-
-
+public String Message;
 
 
 
-public Commits (String commit_hash_id, String committer,String message)
+
+
+public Commit_ready(String commit_hash_id, String committer, String message)
 {
 
 

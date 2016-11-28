@@ -195,24 +195,6 @@ public class BugCommit {
         File input_file = new File("/Users/usi/Desktop/commits.txt");
 
         File output_file = new File("/Users/usi/Desktop/bugCommit.txt");
-//
-//        File localPath = File.createTempFile("TestGitRepository", "");
-//
-//        if (!localPath.delete()) {
-//
-//            throw new IOException("Could not delete temporary file " + localPath);
-//
-//        }
-//
-//        System.out.println("Cloning from " + REMOTE_URL + " to " + localPath);
-//
-//
-//        try (Git result = Git.cloneRepository()
-//                .setURI(REMOTE_URL)
-//                .setDirectory(localPath)
-//                .call()) {
-
-
 
             Repository repository = new Get_repository().getReposit(REMOTE_URL);
 
@@ -237,7 +219,6 @@ public class BugCommit {
                 List<Commit_ready> commit_list = new ArrayList<>();
                 int count = 0;
                 for (RevCommit commit : All_commit) {
-                   // bf_input.write("Commit hash-id: " + commit.getName() + "    Committer:" + commit.getCommitterIdent() + "    message:" + commit.getFullMessage() + "\n");
 
 
                     commit_list.add(count,new Commit_ready(commit.getName(),commit.getCommitterIdent().toString(),commit.getFullMessage()));
@@ -247,7 +228,7 @@ public class BugCommit {
                 }
                 System.out.println("no of commits::"+commit_list.size());
 
-                System.out.println(commit_list.get(1));
+                System.out.println(commit_list.get(1).Commit_hash_id+ commit_list.get(1).Committer+commit_list.get(1).Message);
                 bf_input.close();
 
 
@@ -323,7 +304,7 @@ public class BugCommit {
                                     .setOldTree(oldTreeIter)
                                     .call();
                             for (DiffEntry entry : diffs2) {
-                                System.out.println("Entry: " + entry);
+                               // System.out.println("Entry: " + entry);
                             }
                         }
 
@@ -403,7 +384,7 @@ public class BugCommit {
 
                     for (int i = 0; i < plist.size(); i++) {
 
-                        System.out.println(plist.get(i).objectId + i);
+                        System.out.println(plist.get(i).objectId);
 
 
                         System.out.println(plist.get(i).deletions + ":deletions" + i);
