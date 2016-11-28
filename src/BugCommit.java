@@ -213,10 +213,9 @@ public class BugCommit {
 //                .call()) {
 
 
-            Repository repository;
-            repository = result.getRepository();
 
-            System.out.println("Having repository: " + result.getRepository().getDirectory());
+            Repository repository = new getRepos().getReposit(REMOTE_URL);
+
 
 
             try (Git git = new Git(repository)) {
@@ -230,11 +229,15 @@ public class BugCommit {
 
             try (Git git = new Git(repository)) {
 
-                Iterable<RevCommit> commits = git.log().all().call();
-
+                Iterable<RevCommit> All_commit = git.log().all().call();
+                List<Commits> commit_list = new ArrayList<>();
                 int count = 0;
-                for (RevCommit commit : commits) {
-                    bf_input.write("Commit hash-id: " + commit.getName() + "    Committer:" + commit.getCommitterIdent() + "    message:" + commit.getFullMessage() + "\n");
+                for (RevCommit commit : All_commit) {
+                   // bf_input.write("Commit hash-id: " + commit.getName() + "    Committer:" + commit.getCommitterIdent() + "    message:" + commit.getFullMessage() + "\n");
+
+
+                   commit_list.add(count,new Commits(commit.getName(),commit.getCommitterIdent().toString(),commit.getFullMessage()));
+
 
                     count++;
                 }
@@ -424,7 +427,7 @@ public class BugCommit {
         }
     }
 
-}
+
 
 
 
