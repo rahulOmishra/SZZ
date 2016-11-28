@@ -14,7 +14,7 @@ import java.io.IOException;
 
 
 
-public class Get_repository{
+public class repository {
 
 
 

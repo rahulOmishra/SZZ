@@ -6,7 +6,7 @@ package SZZ;
 
 import org.eclipse.jgit.lib.PersonIdent;
 
-public class Commit_ready {
+public class Commit {
 
     private String hash_id;
 
@@ -15,7 +15,7 @@ public class Commit_ready {
     private String message;
 
 
-    public Commit_ready(String hash_id, PersonIdent committer, String message) {
+    public Commit(String hash_id, PersonIdent committer, String message) {
 
 
         this.hash_id = hash_id;

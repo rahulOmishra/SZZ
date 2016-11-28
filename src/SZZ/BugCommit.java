@@ -185,7 +185,7 @@ public class BugCommit {
 
         File output_file = new File("/Users/usi/Desktop/bugCommit.txt");
 
-            Repository repository = new Get_repository().getReposit(REMOTE_URL);
+            Repository repository = new repository().getReposit(REMOTE_URL);
 
 
 
@@ -201,12 +201,12 @@ public class BugCommit {
             try (Git git = new Git(repository)) {
 
                 Iterable<RevCommit> All_commit = git.log().all().call();
-                List<Commit_ready> commit_list = new ArrayList<>();
+                List<Commit> commit_list = new ArrayList<>();
                 int count = 0;
                 for (RevCommit commit : All_commit) {
 
 
-                    commit_list.add(count,new Commit_ready(commit.getName(),commit.getCommitterIdent(),commit.getFullMessage()));
+                    commit_list.add(count,new Commit(commit.getName(),commit.getCommitterIdent(),commit.getFullMessage()));
 
 
                     count++;
