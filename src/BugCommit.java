@@ -168,6 +168,7 @@ public class BugCommit {
                         if (pathStat != null) {
                             pcm.insertions = pathStat.insertions;
                             pcm.deletions = pathStat.deletions;
+
                         }
                     }
                     list.add(pcm);
@@ -389,11 +390,24 @@ public class BugCommit {
 
 
                     for (int i = 0; i < plist.size(); i++) {
-                        if (plist.get(i).isFilestoreItem()) System.out.println(plist.get(i).getFilestoreOid() + i);
+
+                        System.out.println(plist.get(i).objectId. + i);
 
 
                         System.out.println(plist.get(i).deletions + ":deletions" + i);
                         System.out.println(plist.get(i).insertions + ":insertions" + i);
+
+
+
+//                        TreeWalk treeWalk  = TreeWalk.forPath( repository, fileName, commit.getTree() );
+//                        InputStream inputStream = repository.open( treeWalk.getObjectId( 0 ), Constants.OBJ_BLOB ).openStream();
+///
+//                        treeWalk.close(); // use release() in JGit < 4.0
+
+
+
+
+
 
 
                     }
