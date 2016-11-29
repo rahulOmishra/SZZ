@@ -3,11 +3,23 @@ package szz;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.revwalk.RevCommit;
+import com.gitblit.models.RefModel;
+import org.eclipse.jgit.revwalk.RevObject;
+import org.eclipse.jgit.lib.Ref;
+import org.eclipse.jgit.lib.Constants;
+import org.eclipse.jgit.revwalk.RevWalk;
+import org.eclipse.jgit.lib.ObjectId;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Collections;
+import java.util.Date;
+
+
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Created by usi on 11/29/16.
@@ -42,6 +54,90 @@ public class Repository {
             return new Repository(repository);
         }
     }
+
+    public boolean hasCommits() {
+//        public static boolean hasCommits(org.eclipse.jgit.lib.Repository Repository) throws java.lang.NullPointerException, org.eclipse.jgit.errors.MissingObjectException {
+//            if (Repository != null && Repository.getDirectory().exists())
+//            {
+//                return (new File(Repository.getDirectory(), "objects").list().length > 2)
+//                        || (new File(Repository.getDirectory(), "objects/pack").list().length > 0);
+//            }
+//            return false;
+//        }
+        return !this.commits.isEmpty();
+    }
+
+    public List<RefModel> getLocalBranches(boolean fullName,
+                                                  int maxCount) throws java.io.IOException {
+        return getRefs(Constants.R_HEADS, fullName, maxCount, 0);
+    }
+
+    private List<RefModel> getRefs(String refs, boolean fullName,
+                                          int maxCount, int offset) throws java.io.IOException
+    {
+        List<RefModel> list = new ArrayList<>();
+        if (maxCount == 0)
+        {
+            return list;
+        }
+        if (!this.hasCommits())
+        {
+            return list;
+        }
+
+        Map<String, Ref> map = this.gitRepository.getRefDatabase().getRefs(refs);
+        RevWalk rw = new RevWalk(this.gitRepository);
+        for (Map.Entry<String, Ref> entry : map.entrySet())
+        {
+            Ref ref = entry.getValue();
+            RevObject object = rw.parseAny(ref.getObjectId());
+            String name = entry.getKey();
+            if (fullName && !StringUtils.isEmpty(refs))
+            {
+                name = refs + name;
+            }
+            list.add(new RefModel(name, ref, object));
+        }
+        rw.dispose();
+        Collections.sort(list);
+        Collections.reverse(list);
+        if (maxCount > 0 && list.size() > maxCount)
+        {
+            if (offset < 0)
+            {
+                offset = 0;
+            }
+            int endIndex = offset + maxCount;
+            if (endIndex > list.size())
+            {
+                endIndex = list.size();
+            }
+            list = new ArrayList<RefModel>(list.subList(offset, endIndex));
+        }
+
+        return list;
+    }
+
+    public ObjectId getDefaultBranch() throws Exception {
+        ObjectId object = this.gitRepository.resolve(Constants.HEAD);
+        if (object == null) {
+            List<RefModel> branchModels = getLocalBranches(true, -1);
+            if (branchModels.size() > 0) {
+                RefModel branch = null;
+                Date lastDate = new Date(0);
+                for (RefModel branchModel : branchModels) {
+                    if (branchModel.getDate().after(lastDate)) {
+                        branch = branchModel;
+                        lastDate = branch.getDate();
+                    }
+                }
+                object = branch.getReferencedObjectId();
+            }
+        }
+        return object;
+    }
+
+
 
     public List<Commit> getCommits() throws IOException, GitAPIException {
         // Lazy attribute.
