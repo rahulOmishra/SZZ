@@ -1,4 +1,4 @@
-package SZZ;
+package szz;
 
 /**
  * Created by usi on 11/28/16.

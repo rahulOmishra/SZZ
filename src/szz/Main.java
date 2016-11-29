@@ -1,4 +1,4 @@
-package SZZ;
+package szz;
 
 /**
  * Created by usi on 11/15/16.
@@ -38,8 +38,8 @@ public class Main
                  System.out.println("no of commits::"+commit_list.size());
 
 
-                for (int i = 0; i < commit_list.size(); i++)
-                {
+                 for (int i = 0; i < commit_list.size(); i++)
+                 {
                     if (commit_list.get(i).getMessage().contains("fixes") || commit_list.get(i).getMessage().contains("fixed") || commit_list.get(i).getMessage().contains("closed") || commit_list.get(i).getMessage().contains("closed"))
                     {
                     System.out.println("commit_no: " +i+ "  commit_hash:   "+ commit_list.get(i).getHash_id() + "  Committer:   "+ commit_list.get(i).getCommitter().getName() + "  Commit_message:  " + commit_list.get(i).getMessage());
@@ -50,16 +50,14 @@ public class Main
                     plist = commit_list.get(i).getFilesInCommit(Repository, commitAgain1, true);
                        for (int j = 0; j < plist.size(); j++)
                        {
-                       System.out.println(plist.get(j).objectId);
+                       System.out.println(plist.get(j).path);
                        System.out.println("deletions:   " + plist.get(j).deletions +  "    file_no:  " + j);
                        System.out.println("insertions:   " + plist.get(j).insertions + "   file_no:  " + j);
                        }
-                     walk1.dispose();
-                     }
-
-
-                }
-                }
+                    walk1.dispose();
+                    }
+                 }
+                 }
     }
 }
 

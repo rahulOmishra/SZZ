@@ -1,4 +1,4 @@
-package SZZ;
+package szz;
 
 
 
