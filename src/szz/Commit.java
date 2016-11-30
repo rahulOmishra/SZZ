@@ -59,7 +59,11 @@ public class Commit {
     {
         return message;
     }
+    public RevCommit getGitCommit()
 
+    {
+        return gitCommit;
+    }
     public void setMessage(String message) {
         this.message = message;
     }

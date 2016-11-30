@@ -6,13 +6,21 @@ package szz;
 
 import com.gitblit.models.PathModel;
 import com.gitblit.models.PathModel.PathChangeModel;
+import org.eclipse.jgit.api.BlameCommand;
+import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.blame.BlameGenerator;
 import org.eclipse.jgit.blame.BlameResult;
 import org.eclipse.jgit.diff.RawText;
+import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.jgit.revwalk.RevTree;
+import org.eclipse.jgit.treewalk.*;
 import java.io.ByteArrayOutputStream;
-
+import org.eclipse.jgit.treewalk.filter.PathFilter;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectLoader;
 import java.io.IOException;
-
+import java.io.ByteArrayInputStream;
+import org.apache.commons.io.IOUtils;
 
 public class Blamer
 {
@@ -31,20 +39,49 @@ public class Blamer
     public Repository getRepository() {
         return repository;
     }
+    public int countFiles(RevCommit rCommit, String path) throws java.io.IOException{
+        RevTree tree = rCommit.getTree();
+        try (TreeWalk treeWalk = new TreeWalk(repository.getGitRepository())) {
+            treeWalk.addTree(tree);
+            treeWalk.setRecursive(true);
+            treeWalk.setFilter(PathFilter.create(path));
+            if (!treeWalk.next()) {
+                throw new IllegalStateException("Did not find expected file");
+            }
 
-    public void blameGeneration() throws IOException {
-        BlameGenerator blameGen = new BlameGenerator(repository.getGitRepository(),"/Users/usi/GitTemp/temp2063004325970775410"+path.path);
-        BlameResult blameRes = blameGen.computeBlameResult();
-        ByteArrayOutputStream out = new ByteArrayOutputStream();
-        RawText RText = new RawText(out.toByteArray());
-        RText= blameRes.getResultContents();
-        RText.getLineDelimiter();
+            ObjectId objectId = treeWalk.getObjectId(0);
+            ObjectLoader loader = repository.getGitRepository().open(objectId);
 
-        for (int i=0; i<RText.size(); i++) {
-            System.out.println(RText.getString(i));
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            loader.copyTo(stream);
+
+
+            return IOUtils.readLines(new ByteArrayInputStream(stream.toByteArray())).size();
         }
+    }
 
-        blameGen.close();
+
+
+    public void blameGeneration(Commit commit) throws IOException, GitAPIException {
+
+        BlameCommand bCommand= new BlameCommand(repository.getGitRepository());
+        bCommand.setStartCommit(commit.getGitCommit());
+        bCommand.setFilePath(path.path);
+        BlameResult blameRes = bCommand.call();
+
+        int lines = countFiles(commit.getGitCommit(),path.path);
+        System.out.println(lines);
+        for (int i = 0; i < 5; i++) {
+            RevCommit bCommit = blameRes.getSourceCommit(0);
+            System.out.println("blame commiter: "+bCommit.getCommitterIdent().getName()+ "blame commit:  " + bCommit.getName());
+//            RawText  rText= blameRes.getResultContents();
+//            rText.getLineDelimiter();
+//            for (int j=0; i<rText.size(); j++){
+//            System.out.println(rText.getString(j));
+//            }
+
+        }
+//        blameGen.close();
     }
 
 

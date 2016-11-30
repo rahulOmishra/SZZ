@@ -19,14 +19,10 @@ public class Main {
         Repository repository = Repository.getRemoteRepository(REMOTE_URL);
         List<Commit> commitList = repository.getCommits();
 
-        Set<String> commitId= new HashSet<>();
-        for(int i=0; i< commitList.size(); i++){
-            commitId.add(commitList.get(i).getId());
-        }
 
 
         int commitCounter = 0;
-         System.out.println(commitId.size());
+         System.out.println(commitList.size());
 
         for (Commit commit : commitList) {
             if (commit.isLikelyBugFixingCommit()) {
@@ -42,7 +38,7 @@ public class Main {
                     System.out.println("insertions:   " + path.insertions);
 
                   Blamer blamer = new Blamer(path, repository);
-                  blamer.blameGeneration();
+                  blamer.blameGeneration(commit);
 
                 }
 
