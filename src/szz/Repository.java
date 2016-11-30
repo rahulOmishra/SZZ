@@ -56,14 +56,7 @@ public class Repository {
     }
 
     public boolean hasCommits() {
-//        public static boolean hasCommits(org.eclipse.jgit.lib.Repository Repository) throws java.lang.NullPointerException, org.eclipse.jgit.errors.MissingObjectException {
-//            if (Repository != null && Repository.getDirectory().exists())
-//            {
-//                return (new File(Repository.getDirectory(), "objects").list().length > 2)
-//                        || (new File(Repository.getDirectory(), "objects/pack").list().length > 0);
-//            }
-//            return false;
-//        }
+
         return !this.commits.isEmpty();
     }
 
@@ -137,13 +130,12 @@ public class Repository {
         return object;
     }
 
-
-
     public List<Commit> getCommits() throws IOException, GitAPIException {
         // Lazy attribute.
         if (this.commits == null) {
             try (Git git = new Git(this.gitRepository)) {
-                Iterable<RevCommit> allCommits = git.log().all().call();
+                //Iterable<RevCommit> allCommits = git.log().all().call();
+                Iterable<RevCommit> allCommits= git.log().add(this.gitRepository.resolve("Head")).call();
                 this.commits = new ArrayList<>();
                 allCommits.forEach(gitCommit -> commits.add(new Commit(this, gitCommit)));
             }

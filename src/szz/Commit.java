@@ -28,7 +28,6 @@ public class Commit {
     public Commit(Repository repository, RevCommit gitCommit) {
         this.repository = repository;
         this.gitCommit = gitCommit;
-        // TODO: Check if id is more appropriate.
         this.id = gitCommit.getName();
         this.message = gitCommit.getFullMessage();
         this.committer = gitCommit.getCommitterIdent();
@@ -66,8 +65,8 @@ public class Commit {
     }
 
     public boolean isLikelyBugFixingCommit() {
-        return (this.message.contains("fixes") ||
-                this.message.contains("fixed") ||
+        return (this.message.contains("fixes")  ||
+                this.message.contains("fixed")  ||
                 this.message.contains("closes") ||
                 this.message.contains("closed"));
     }
