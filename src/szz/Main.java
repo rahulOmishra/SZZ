@@ -12,33 +12,33 @@ import java.util.Set;
 
 public class Main {
 
-    private static final String REMOTE_URL = "https://github.com/apache/commons-lang.git";
+    private static String REMOTE_URL = null;
 
     public static void main(String[] args) throws java.lang.Exception {
 
+        REMOTE_URL = args[0];
         Repository repository = Repository.getRemoteRepository(REMOTE_URL);
         List<Commit> commitList = repository.getCommits();
 
 
-
         int commitCounter = 0;
-         System.out.println(commitList.size());
+        System.out.println(commitList.size());
 
         for (Commit commit : commitList) {
             if (commit.isLikelyBugFixingCommit()) {
                 commitCounter++;
 
-               System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
+                System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
 
                 List<PathChangeModel> plist = commit.getFilesInCommit(true);
 
-                for (PathChangeModel path: plist) {
+                for (PathChangeModel path : plist) {
                     System.out.println(path.path);
                     System.out.println("deletions:   " + path.deletions);
                     System.out.println("insertions:   " + path.insertions);
 
-                  Blamer blamer = new Blamer(path, repository);
-                  blamer.blameGeneration(commit);
+                    Blamer blamer = new Blamer(path, repository);
+                    blamer.blameGeneration(commit);
 
                 }
 

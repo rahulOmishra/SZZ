@@ -8,9 +8,7 @@ import com.gitblit.models.PathModel;
 import com.gitblit.models.PathModel.PathChangeModel;
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.eclipse.jgit.blame.BlameGenerator;
 import org.eclipse.jgit.blame.BlameResult;
-import org.eclipse.jgit.diff.RawText;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevTree;
 import org.eclipse.jgit.treewalk.*;
@@ -21,6 +19,9 @@ import org.eclipse.jgit.lib.ObjectLoader;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import org.apache.commons.io.IOUtils;
+import java.util.Set;
+import java.util.HashSet;
+
 
 public class Blamer
 {
@@ -68,20 +69,21 @@ public class Blamer
         bCommand.setStartCommit(commit.getGitCommit());
         bCommand.setFilePath(path.path);
         BlameResult blameRes = bCommand.call();
-
+        Set<String> listCommiter = new HashSet<>();
         int lines = countFiles(commit.getGitCommit(),path.path);
         System.out.println(lines);
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < lines; i++) {
             RevCommit bCommit = blameRes.getSourceCommit(0);
-            System.out.println("blame commiter: "+bCommit.getCommitterIdent().getName()+ "blame commit:  " + bCommit.getName());
+            listCommiter.add(bCommit.getCommitterIdent().getName());
+
+//            System.out.println("blame commiter: "+bCommit.getCommitterIdent().getName()+ "blame commit:  " + bCommit.getName());
 //            RawText  rText= blameRes.getResultContents();
 //            rText.getLineDelimiter();
 //            for (int j=0; i<rText.size(); j++){
 //            System.out.println(rText.getString(j));
-//            }
+            }
+        listCommiter.forEach(commiter->System.out.println(commiter));
 
-        }
-//        blameGen.close();
     }
 
 
