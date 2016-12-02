@@ -19,6 +19,8 @@ import org.eclipse.jgit.lib.ObjectLoader;
 import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import org.apache.commons.io.IOUtils;
+
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -63,18 +65,18 @@ public class Blamer
 
 
 
-    public void blameGeneration(Commit commit) throws IOException, GitAPIException {
+    public Set<RevCommit> blameGeneration(Commit commit) throws IOException, GitAPIException {
 
         BlameCommand bCommand= new BlameCommand(repository.getGitRepository());
         bCommand.setStartCommit(commit.getGitCommit());
         bCommand.setFilePath(path.path);
         BlameResult blameRes = bCommand.call();
-        Set<String> listCommiter = new HashSet<>();
+        Set<RevCommit> listCommiter = new HashSet<>();
         int lines = countFiles(commit.getGitCommit(),path.path);
         System.out.println(lines);
         for (int i = 0; i < lines; i++) {
-            RevCommit bCommit = blameRes.getSourceCommit(0);
-            listCommiter.add(bCommit.getCommitterIdent().getName());
+            RevCommit bCommit = blameRes.getSourceCommit(i);
+            listCommiter.add(bCommit);
 
 //            System.out.println("blame commiter: "+bCommit.getCommitterIdent().getName()+ "blame commit:  " + bCommit.getName());
 //            RawText  rText= blameRes.getResultContents();
@@ -83,6 +85,7 @@ public class Blamer
 //            System.out.println(rText.getString(j));
             }
         listCommiter.forEach(commiter->System.out.println(commiter));
+        return listCommiter;
 
     }
 
