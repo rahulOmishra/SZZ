@@ -26,10 +26,11 @@ public class Main {
         System.out.println(commitList.size());
 
         for (Commit commit : commitList) {
-            if (commit.isLikelyBugFixingCommit()) {
-                commitCounter++;
-                if(commitCounter==10)
+            if (!commit.isLikelyBugFixingCommit()) {
+
+                if(commitCounter==1)
                     break;
+                commitCounter++;
                 System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
 
                 List<PathChangeModel> plist = commit.getFilesInCommit(true);
@@ -42,16 +43,12 @@ public class Main {
                     Blamer blamer = new Blamer(path, repository);
                     Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
                     for(RevCommit parentCommit: listCommiter){
-
-                        new Diff(repository,commit).computeDiff(parentCommit);
+                        new Diff(repository,commit).computeDiff(parentCommit, path.path);
                     }
-
                 }
-
             }
         }
     }
-
 }
 
 

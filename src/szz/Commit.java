@@ -14,6 +14,9 @@ import org.eclipse.jgit.lib.PersonIdent;
 import org.eclipse.jgit.revwalk.RevCommit;
 import com.gitblit.models.PathModel;
 import org.eclipse.jgit.revwalk.RevWalk;
+import com.gitblit.utils.PatchFormatter;
+import com.gitblit.*;
+import org.eclipse.jgit.*;
 
 import java.util.*;
 

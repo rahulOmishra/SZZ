@@ -111,7 +111,7 @@ public class Repository {
         return list;
     }
 
-    public ObjectId getDefaultBranch() throws Exception {
+    public ObjectId getDefaultBranch() throws Exception, NullPointerException {
         ObjectId object = this.gitRepository.resolve(Constants.HEAD);
         if (object == null) {
             List<RefModel> branchModels = getLocalBranches(true, -1);

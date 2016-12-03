@@ -50,6 +50,7 @@ public class Blamer
             treeWalk.setFilter(PathFilter.create(path));
             if (!treeWalk.next()) {
                 throw new IllegalStateException("Did not find expected file");
+
             }
 
             ObjectId objectId = treeWalk.getObjectId(0);
@@ -70,7 +71,7 @@ public class Blamer
         BlameCommand bCommand= new BlameCommand(repository.getGitRepository());
         bCommand.setStartCommit(commit.getGitCommit());
         bCommand.setFilePath(path.path);
-        BlameResult blameRes = bCommand.call();
+        BlameResult blameRes = bCommand.call().;
         Set<RevCommit> listCommiter = new HashSet<>();
         int lines = countFiles(commit.getGitCommit(),path.path);
         System.out.println(lines);
@@ -88,8 +89,4 @@ public class Blamer
         return listCommiter;
 
     }
-
-
-
-
 }
