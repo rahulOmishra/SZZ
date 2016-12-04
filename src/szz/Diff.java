@@ -33,7 +33,7 @@ public class Diff {
 
     }
 
-    public void computeDiff(BlameResult bResult, String path) throws IOException, GitAPIException {
+    public void blameOnDiff(BlameResult bResult, String path, int fileCounter) throws IOException, GitAPIException {
 
 
         int linesAdded = 0;
@@ -54,26 +54,19 @@ public class Diff {
 
         filesChanged = diffs.size();
         ArrayList<String> diffText = new ArrayList<>();
-        for (DiffEntry diff : diffs) {
-            if ((diff.getChangeType().name() == "MODIFY" ||
-                    diff.getChangeType().name() == "DELETE") ||
-                    (diff.toString()== path)){
-                EditList Elist=df.toFileHeader(diff).toEditList();
+            if ((diffs.get(fileCounter).getChangeType().name() == "MODIFY" ||
+                    diffs.get(fileCounter).getChangeType().name() == "DELETE")){
+                EditList Elist=df.toFileHeader(diffs.get(fileCounter)).toEditList();
 
                 for(int i=0; i<Elist.size();i++) {
-                    for (int j= Elist.get(i).getBeginA()+1; j < Elist.get(i).getEndA(); j++) {
+                    for (int j= Elist.get(i).getBeginB()+1; j <= Elist.get(i).getEndB(); j++) {
                         RevCommit commit = bResult.getSourceCommit(j);
-                        System.out.println("Blamed commit:  " +commit+ "   Author:  "+ bResult.getSourceAuthor(j)+"   chnage type:  "+ Elist.get(i));
+                        System.out.println("Blamed commit:  " +commit+ "   Author:  "+ bResult.getSourceAuthor(j));
                     }
 
                  }
 
-
             }
-
-
-
-        }
     }
 
 

@@ -28,14 +28,11 @@ public class Main {
 
         for (Commit commit : commitList) {
             if (commit.isLikelyBugFixingCommit()) {
-
-//                if(commitCounter==1)
-//                    break;
                 commitCounter++;
                 System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
 
                 List<PathChangeModel> plist = commit.getFilesInCommit(true);
-
+                int fileCounter=0;
                 for (PathChangeModel path : plist) {
                     System.out.println(path.path);
                     System.out.println("deletions:   " + path.deletions);
@@ -45,9 +42,11 @@ public class Main {
                     //Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
                     BlameResult bResult= blamer.blameGeneration(commit);
 
-                        new Diff(repository,commit).computeDiff(bResult,path.path);
+                        new Diff(repository,commit).blameOnDiff(bResult,path.path, fileCounter);
+                        fileCounter++;
 
                 }
+            fileCounter=0;
             }
         }
     }

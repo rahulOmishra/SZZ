@@ -72,21 +72,6 @@ public class Blamer
         bCommand.setStartCommit(commit.getGitCommit());
         bCommand.setFilePath(path.path);
         BlameResult blameRes = bCommand.call();
-//        Set<RevCommit> listCommiter = new HashSet<>();
-//        int lines = countFiles(commit.getGitCommit(),path.path);
-//        System.out.println(lines);
-//        for (int i = 0; i < lines; i++) {
-//            RevCommit bCommit = blameRes.getSourceCommit(i);
-//            listCommiter.add(bCommit);
-//
-////            System.out.println("blame commiter: "+bCommit.getCommitterIdent().getName()+ "blame commit:  " + bCommit.getName());
-////            RawText  rText= blameRes.getResultContents();
-////            rText.getLineDelimiter();
-////            for (int j=0; i<rText.size(); j++){
-////            System.out.println(rText.getString(j));
-//            }
-//        listCommiter.forEach(commiter->System.out.println(commiter));
-//        return listCommiter;
         return blameRes;
 
     }

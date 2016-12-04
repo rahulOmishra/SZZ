@@ -75,6 +75,7 @@ public class Commit {
         return (this.message.contains("fixes")  ||
                 this.message.contains("fixed")  ||
                 this.message.contains("closes") ||
+                this.message.contains("fix")    ||
                 this.message.contains("closed"));
     }
 
