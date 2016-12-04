@@ -1,6 +1,7 @@
 package szz;
 
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.blame.BlameResult;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.diff.DiffFormatter;
 import org.eclipse.jgit.treewalk.CanonicalTreeParser;
@@ -32,7 +33,7 @@ public class Diff {
 
     }
 
-    public void computeDiff(RevCommit parent, String path) throws IOException, GitAPIException {
+    public void computeDiff(BlameResult bResult, String path) throws IOException, GitAPIException {
 
 
         int linesAdded = 0;
@@ -48,7 +49,7 @@ public class Diff {
         List<DiffEntry> diffs;
         diffs = new Git(repository.getGitRepository()).diff()
                 .setNewTree(new CanonicalTreeParser().resetRoot(reader,commit.getGitCommit().getTree()))
-                .setOldTree(new CanonicalTreeParser().resetRoot(reader,parent.getTree()))
+                .setOldTree(new CanonicalTreeParser().resetRoot(reader, commit.getGitCommit().getParent(0).getTree()))
                 .call();
 
         filesChanged = diffs.size();
@@ -60,39 +61,25 @@ public class Diff {
                 EditList Elist=df.toFileHeader(diff).toEditList();
 
                 for(int i=0; i<Elist.size();i++) {
-                    Elist.get(i);
+                    for (int j= Elist.get(i).getBeginA()+1; j < Elist.get(i).getEndA(); j++) {
+                        RevCommit commit = bResult.getSourceCommit(j);
+                        System.out.println("Blamed commit:  " +commit+ "   Author:  "+ bResult.getSourceAuthor(j)+"   chnage type:  "+ Elist.get(i));
+                    }
 
-                }
+                 }
 
 
             }
 
 
-            System.out.println(diff.getOldId()+ commit.getGitCommit().getName()+parent.getName());
 
-            try {
-                //Format a patch script for one file entry.
-                df.setContext(0);
-
-                df.format(diff);
-                RawText r = new RawText(out.toByteArray());
-                r.getLineDelimiter();
-
-
-                diffText.add(out.toString());
-                out.reset();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
-
-        for(String diffT:diffText){
-
-            //System.out.println(diffT);
-        }
-
-
     }
 
 
+
+
 }
+
+
+

@@ -4,6 +4,7 @@ package szz;
  * Created by usi on 11/15/16.
  */
 import com.gitblit.models.PathModel.PathChangeModel;
+import org.eclipse.jgit.blame.BlameResult;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import java.util.HashSet;
@@ -26,10 +27,10 @@ public class Main {
         System.out.println(commitList.size());
 
         for (Commit commit : commitList) {
-            if (!commit.isLikelyBugFixingCommit()) {
+            if (commit.isLikelyBugFixingCommit()) {
 
-                if(commitCounter==1)
-                    break;
+//                if(commitCounter==1)
+//                    break;
                 commitCounter++;
                 System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
 
@@ -41,10 +42,11 @@ public class Main {
                     System.out.println("insertions:   " + path.insertions);
 
                     Blamer blamer = new Blamer(path, repository);
-                    Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
-                    for(RevCommit parentCommit: listCommiter){
-                        new Diff(repository,commit).computeDiff(parentCommit, path.path);
-                    }
+                    //Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
+                    BlameResult bResult= blamer.blameGeneration(commit);
+
+                        new Diff(repository,commit).computeDiff(bResult,path.path);
+
                 }
             }
         }
