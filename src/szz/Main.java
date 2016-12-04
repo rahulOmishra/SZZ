@@ -42,11 +42,11 @@ public class Main {
                     //Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
                     BlameResult bResult= blamer.blameGeneration(commit);
 
-                        new Diff(repository,commit).blameOnDiff(bResult,path.path, fileCounter);
-                        fileCounter++;
+                    new Diff(repository,commit).blameOnDiff(bResult,path.path, fileCounter);
+                    fileCounter++;
 
                 }
-            fileCounter=0;
+                fileCounter=0;
             }
         }
     }
