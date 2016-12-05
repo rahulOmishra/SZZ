@@ -69,7 +69,7 @@ public class Blamer
     public BlameResult blameGeneration(Commit commit) throws IOException, GitAPIException {
 
         BlameCommand bCommand= new BlameCommand(repository.getGitRepository());
-        bCommand.setStartCommit(commit.getGitCommit());
+        bCommand.setStartCommit(commit.getGitCommit().getParent(0));
         bCommand.setFilePath(path.path);
         BlameResult blameRes = bCommand.call();
         return blameRes;

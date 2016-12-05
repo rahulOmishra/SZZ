@@ -51,7 +51,7 @@ public class Diff {
                 if ((Elist.get(i).getType().name() == "DELETE") ||
                         (Elist.get(i).getType().name() == "REPLACE")) {
 
-                    for (int j = Elist.get(i).getBeginA(); j <= Elist.get(i).getEndA(); j++) {
+                    for (int j = Elist.get(i).getBeginA()+1; j <= Elist.get(i).getEndA(); j++) {
                         RevCommit commit = bResult.getSourceCommit(j);
                         System.out.println("Blamed commit:  " + commit + "   Author:  " + bResult.getSourceAuthor(j));
                     }
