@@ -134,8 +134,9 @@ public class Repository {
         // Lazy attribute.
         if (this.commits == null) {
             try (Git git = new Git(this.gitRepository)) {
-                //Iterable<RevCommit> allCommits = git.log().all().call();
-                Iterable<RevCommit> allCommits= git.log().add(this.gitRepository.resolve("Head")).call();
+
+                //Iterable<RevCommit> allCommits = git.log().all().call();// for all branches
+                Iterable<RevCommit> allCommits= git.log().add(this.gitRepository.resolve("Head")).call();// for master branch only
                 this.commits = new ArrayList<>();
                 allCommits.forEach(gitCommit -> commits.add(new Commit(this, gitCommit)));
             }
