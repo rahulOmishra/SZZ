@@ -5,12 +5,7 @@ package szz;
  */
 import com.gitblit.models.PathModel.PathChangeModel;
 import org.eclipse.jgit.blame.BlameResult;
-import org.eclipse.jgit.revwalk.RevCommit;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.stream.Stream;
-import java.util.Set;
 
 public class Main {
 

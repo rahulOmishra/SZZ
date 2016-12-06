@@ -47,21 +47,34 @@ public class Diff {
         int filesChanged = diffs.size();
         EditList Elist=df.toFileHeader(diffs.get(fileCounter)).toEditList();
 
-            for(int i=0; i<Elist.size();i++) {
-                if ((Elist.get(i).getType().name() == "DELETE") ||
-                        (Elist.get(i).getType().name() == "REPLACE")) {
+        for(int i=0; i<Elist.size();i++) {
+            if ((Elist.get(i).getType().name() == "DELETE") ||
+                    (Elist.get(i).getType().name() == "REPLACE")&&
+                            (!(Elist.get(i).getLengthA()==0))) {
 
+
+                try {
                     for (int j = Elist.get(i).getBeginA()+1; j <= Elist.get(i).getEndA(); j++) {
-                        RevCommit commit = bResult.getSourceCommit(j);
-                        System.out.println("Blamed commit:  " + commit + "   Author:  " + bResult.getSourceAuthor(j));
+                        try {
+                            if (!(bResult.getSourceCommit(j) == null)) {
+                                RevCommit commit = bResult.getSourceCommit(j);
+                                System.out.println("Blamed commit:  " + commit + "   Author:  " + bResult.getSourceAuthor(j));
+                            }
+                        }catch(NullPointerException nlp){
+
+                        }
                     }
-
+                }catch (ArrayIndexOutOfBoundsException e)
+                {
+                    System.out.println("Entry for this line not found");
                 }
+
             }
-
+        }
     }
-
 }
+
+
 
 
 

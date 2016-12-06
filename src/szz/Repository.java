@@ -61,12 +61,12 @@ public class Repository {
     }
 
     public List<RefModel> getLocalBranches(boolean fullName,
-                                                  int maxCount) throws java.io.IOException {
+                                           int maxCount) throws java.io.IOException {
         return getRefs(Constants.R_HEADS, fullName, maxCount, 0);
     }
 
     private List<RefModel> getRefs(String refs, boolean fullName,
-                                          int maxCount, int offset) throws java.io.IOException
+                                   int maxCount, int offset) throws java.io.IOException
     {
         List<RefModel> list = new ArrayList<>();
         if (maxCount == 0)

@@ -35,9 +35,7 @@ public class Commit {
 
     }
 
-    public String getId()
-
-    {
+    public String getId() {
         return id;
     }
 
@@ -49,20 +47,14 @@ public class Commit {
         return committer;
     }
 
-    public void setCommitter(PersonIdent commiter)
-
-    {
+    public void setCommitter(PersonIdent commiter) {
         this.committer = commiter;
     }
 
-    public String getMessage()
-
-    {
+    public String getMessage() {
         return message;
     }
-    public RevCommit getGitCommit()
-
-    {
+    public RevCommit getGitCommit() {
         return gitCommit;
     }
     public void setMessage(String message) {
