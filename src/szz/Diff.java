@@ -34,7 +34,7 @@ public class Diff {
 
     }
 
-    public void blameOnDiff(BlameResult bResult, int fileCounter) throws IOException, GitAPIException {
+    public void blameOnDiff(BlameResult bResult, int fileCounter,List<Commit>bCommits) throws IOException, GitAPIException {
 
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DiffFormatter df = new DiffFormatter(out);
@@ -58,6 +58,7 @@ public class Diff {
         }
 
         int filesChanged = diffs.size();
+
         EditList Elist=df.toFileHeader(diffs.get(fileCounter)).toEditList();
 
         for(int i=0; i<Elist.size();i++) {
@@ -70,8 +71,12 @@ public class Diff {
                     for (int j = Elist.get(i).getBeginA()+1; j <= Elist.get(i).getEndA(); j++) {
                         try {
                             if (!(bResult.getSourceCommit(j) == null)) {
-                                RevCommit commit = bResult.getSourceCommit(j);
-                                System.out.println("Blamed commit:  " + commit + "   Author:  " + bResult.getSourceAuthor(j));
+                                RevCommit blamedCommit = bResult.getSourceCommit(j);
+
+                                bCommits.add(new Commit(repository,blamedCommit));
+                                System.out.println("Blamed commit:  " + blamedCommit  + "   Author:  " + bResult.getSourceAuthor(j));
+
+
                             }
                         }catch(NullPointerException nlp){
                             //missing blob on git server
