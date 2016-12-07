@@ -39,21 +39,34 @@ public class Repository {
 
     public static Repository getRemoteRepository(String remoteURL) throws IOException, GitAPIException {
 
-        File repoPath = new File("/Users/usi/GitTemp");
-        File localPath = File.createTempFile("temp", "",repoPath);
-
-        if (!localPath.delete()) {
-            throw new IOException("Could not delete temporary file " + localPath);
+        File repoPath = new File("/Users/usi/Git");
+        if(!repoPath.exists()){
+            repoPath.mkdir();
         }
 
-        System.out.println("Cloning from " + remoteURL + " to " + localPath);
 
-        try (Git result = Git.cloneRepository().setURI(remoteURL).setDirectory(localPath).call()) {
+        File localPath = new File(repoPath,remoteURL.substring(21,28));
+        if(!localPath.exists()){
+            Git result = Git.cloneRepository().setURI(remoteURL).setDirectory(localPath).call();
             org.eclipse.jgit.lib.Repository repository;
             repository = result.getRepository();
+            System.out.println("Cloning from " + remoteURL + " to " + localPath);
+
+            return new Repository(repository);
+
+
+
+        }else {
+            Git result = Git.init().setDirectory(localPath).call();
+            org.eclipse.jgit.lib.Repository repository;
+            repository = result.getRepository();
+            System.out.println("Fetching from  " + localPath);
+
             return new Repository(repository);
         }
+
     }
+
 
     public boolean hasCommits() {
 

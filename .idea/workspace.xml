@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c5d8a43-e0b9-4aa7-b750-12ada3fc5521" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/szz/CsvOut.java" afterPath="$PROJECT_DIR$/src/szz/CsvOut.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/szz/Diff.java" afterPath="$PROJECT_DIR$/src/szz/Diff.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/szz/Issues.java" afterPath="$PROJECT_DIR$/src/szz/Issues.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/szz/Main.java" afterPath="$PROJECT_DIR$/src/szz/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/szz/Repository.java" afterPath="$PROJECT_DIR$/src/szz/Repository.java" />
     </list>
     <ignored path="SZZ.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,10 +30,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/szz/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="855">
+            <state relative-caret-position="345">
               <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -45,23 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CsvOut.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/szz/CsvOut.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Repository.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Repository.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/szz/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
+            <state relative-caret-position="-1040">
+              <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,6 +102,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="CsvOut.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/szz/CsvOut.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="243">
+              <caret line="35" column="9" selection-start-line="33" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -157,11 +154,11 @@
         <option value="$PROJECT_DIR$/src/szz/Repositories.java" />
         <option value="$PROJECT_DIR$/src/szz/Blamer.java" />
         <option value="$PROJECT_DIR$/src/szz/Commit.java" />
-        <option value="$PROJECT_DIR$/src/szz/Repository.java" />
         <option value="$PROJECT_DIR$/src/szz/Diff.java" />
         <option value="$PROJECT_DIR$/src/szz/Main.java" />
-        <option value="$PROJECT_DIR$/src/szz/CsvOut.java" />
         <option value="$PROJECT_DIR$/src/szz/Issues.java" />
+        <option value="$PROJECT_DIR$/src/szz/CsvOut.java" />
+        <option value="$PROJECT_DIR$/src/szz/Repository.java" />
       </list>
     </option>
   </component>
@@ -281,7 +278,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="szz.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="&quot;https://github.com/tomaskrizek/tul-szz-it-nv.git&quot; &quot;no&quot; &quot;no&quot; &quot;no&quot; &quot;myCSV&quot;" />
+      <option name="PROGRAM_PARAMETERS" value="&quot;https://github.com/eclipse/jgit.git&quot; &quot;no&quot; &quot;no&quot; &quot;no&quot; &quot;Jgit&quot;" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -745,7 +742,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481105084655</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="created csvOut class">
+      <created>1481119184418</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1481119184418</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -768,7 +772,7 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.8468085" sideWeight="0.50572246" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30921987" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4680851" sideWeight="0.49427754" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32907802" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -826,7 +830,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Changed the way of storing commits." />
     <MESSAGE value="Changed the appropriate class name." />
     <MESSAGE value="Removed some commented lines." />
     <MESSAGE value="removed the file output and input for filtering out bug fixing commits." />
@@ -851,7 +854,8 @@
     <MESSAGE value="ignored some null pointer exceptions due to missing blobs." />
     <MESSAGE value="Added feature to retrieve bug-inducing commits for a specified commit." />
     <MESSAGE value="Created Issue class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created Issue class" />
+    <MESSAGE value="created csvOut class" />
+    <option name="LAST_COMMIT_MESSAGE" value="created csvOut class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1018,26 +1022,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/szz/Repository.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="45" column="65" selection-start-line="45" selection-start-column="65" selection-end-line="45" selection-end-column="65" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/szz/CsvOut.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="45" column="0" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/szz/Diff.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -1050,8 +1034,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/szz/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="855">
+        <state relative-caret-position="345">
           <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/szz/CsvOut.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="243">
+          <caret line="35" column="9" selection-start-line="33" selection-start-column="8" selection-end-line="35" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/szz/Repository.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1040">
+          <caret line="62" column="46" selection-start-line="62" selection-start-column="46" selection-end-line="62" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
