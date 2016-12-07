@@ -39,7 +39,7 @@ public class Diff {
         ByteArrayOutputStream out = new ByteArrayOutputStream();
         DiffFormatter df = new DiffFormatter(out);
         df.setRepository(repository.getGitRepository());
-        df.setDiffComparator(RawTextComparator.DEFAULT);
+        df.setDiffComparator(RawTextComparator.WS_IGNORE_ALL);
         df.setDetectRenames(true);
         ObjectReader reader = repository.getGitRepository().newObjectReader();
         List<DiffEntry> diffs;

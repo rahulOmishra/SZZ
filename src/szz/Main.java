@@ -4,6 +4,7 @@ package szz;
  * Created by usi on 11/15/16.
  */
 import com.gitblit.models.PathModel.PathChangeModel;
+import org.eclipse.egit.github.core.Issue;
 import org.eclipse.jgit.blame.BlameResult;
 import java.util.List;
 import org.eclipse.jgit.revwalk.*;
@@ -38,18 +39,38 @@ public class Main {
         REMOTE_URL = args[0];
         Repository repository = Repository.getRemoteRepository(REMOTE_URL);
 
-        if(args.length==1){
+        if(args[1].contains("no")){
             List<Commit> commitList = repository.getCommits();
             int commitCounter = 0;
             System.out.println(commitList.size());
 
             for (Commit commit : commitList) {
-                if (commit.isLikelyBugFixingCommit()) {
-                    commitCounter++;
-                    System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
-                    int fileCounter=0;
-                    findBugInducingCommits(commit,fileCounter,repository);
-                    fileCounter=0;
+
+                if(args[2].contains("no")) {
+                    if (commit.isLikelyBugFixingCommit()) {
+                        commitCounter++;
+                        System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
+                        int fileCounter = 0;
+                        findBugInducingCommits(commit, fileCounter, repository);
+                        fileCounter = 0;
+                    }
+                }else{
+
+                    List<Issue> issueList =new Issues(args[2],args[3]).fetchIssue();
+                    Boolean match=false;
+                    for(Issue issue: issueList){
+                        if (commit.getGitCommit().getFullMessage().matches("#"+issue.getNumber()+"")){
+                            match=true;
+                        }
+                    }
+                    if ((commit.isLikelyBugFixingCommit())&& match) {
+                        commitCounter++;
+                        System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
+                        int fileCounter = 0;
+                        findBugInducingCommits(commit, fileCounter, repository);
+                        fileCounter = 0;
+                    }
+
                 }
             }
 
@@ -58,18 +79,15 @@ public class Main {
             commitHash= args[1];
             RevWalk RW= new RevWalk(repository.getGitRepository());
             Commit commit= new Commit(repository,RW
-                           .parseCommit(repository.getGitRepository()
-                           .resolve(commitHash)));
+                    .parseCommit(repository.getGitRepository()
+                            .resolve(commitHash)));
             //RW.dispose();
-            if (commit.isLikelyBugFixingCommit()) {
-                System.out.println(" bug fixing commit \t" + commit);
-                int fileCounter=0;
-                findBugInducingCommits(commit,fileCounter,repository);
 
-            }
+            System.out.println(" bug fixing commit \t" + commit);
+            int fileCounter=0;
+            findBugInducingCommits(commit,fileCounter,repository);
 
         }
-
     }
 }
 
