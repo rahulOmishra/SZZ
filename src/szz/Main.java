@@ -6,12 +6,12 @@ package szz;
 import com.gitblit.models.PathModel.PathChangeModel;
 import org.eclipse.egit.github.core.Issue;
 import org.eclipse.jgit.blame.BlameResult;
-
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.jgit.revwalk.*;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.LinkedList;
 
 public class Main {
 
@@ -36,12 +36,28 @@ public class Main {
             fileCounter++;
 
         }
-    blameMap.put(commit,bCommits);
+        blameMap.put(commit,bCommits);
     }
     public static void main(String[] args) throws java.lang.Exception {
 
         REMOTE_URL = args[0];
-        Repository repository = Repository.getRemoteRepository(REMOTE_URL);
+        String[] urlParts= REMOTE_URL.split("/");
+        String repoName=urlParts[urlParts.length-1];
+        String[] repoParts= repoName.split("\\.");
+        List<String> bugNumber = new LinkedList<>();
+
+        Repository repository = Repository.getRemoteRepository(REMOTE_URL,urlParts[urlParts.length - 2]+repoParts[0].toUpperCase());
+        if(!args[2].contains("no")) {
+
+            List<Issue> issueList = new Issues(urlParts[urlParts.length - 2], repoParts[0]).fetchIssue();
+
+            for(Issue issue: issueList){
+
+                bugNumber.add(String.valueOf(issue.getNumber()));
+                System.out.println(issue.getNumber());
+            }
+
+        }
 
         if(args[1].contains("no")){
             List<Commit> commitList = repository.getCommits();
@@ -56,14 +72,13 @@ public class Main {
                         System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
                         int fileCounter = 0;
                         findBugInducingCommits(commit, fileCounter, repository, blameMap);
-                        fileCounter = 0;
                     }
                 }else{
 
-                    List<Issue> issueList =new Issues(args[2],args[3]).fetchIssue();
+
                     Boolean match=false;
-                    for(Issue issue: issueList){
-                        if (commit.getGitCommit().getFullMessage().matches("#"+issue.getNumber()+"")){
+                    for(String bugNum: bugNumber){
+                        if (commit.getGitCommit().getFullMessage().contains(bugNum)){
                             match=true;
                         }
                     }
@@ -72,7 +87,6 @@ public class Main {
                         System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
                         int fileCounter = 0;
                         findBugInducingCommits(commit, fileCounter, repository, blameMap);
-                        fileCounter = 0;
                     }
 
                 }
@@ -92,7 +106,7 @@ public class Main {
             findBugInducingCommits(commit,fileCounter,repository, blameMap);
 
         }
-        new CsvOut().writeToCSV(args[4],blameMap);
+        new CsvOut().writeToCSV(repoParts[0],blameMap);
     }
 }
 

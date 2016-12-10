@@ -31,6 +31,9 @@ public class Issues {
 
         GitHubClient git=new GitHubClient();
         git.setCredentials("TheMask", "sugandh4");
+        git.setCredentials("rahmosh", "Ramkrishna@3");
+
+
         RepositoryService repoService=new RepositoryService(git);
         IssueService issueService=new IssueService(git);
         Repository repo= repoService.getRepository(user, repository);

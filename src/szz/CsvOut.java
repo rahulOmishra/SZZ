@@ -18,7 +18,7 @@ public class CsvOut {
 
     private  String lineSeparator = "\n";
 
-    private  Object [] fileHeader = {"BugFix-CommitId","Commiter","BugInducing-CommitId","SourceAuthor"};
+    private  String fileHeader = "BugFix-CommitId,BugInducing-CommitId";
 
 
     public void writeToCSV(String fileName, Map<Commit, List<Commit>> blameMap) throws IOException {
@@ -34,10 +34,10 @@ public class CsvOut {
         if(!tagFile.exists()){
             tagFile.createNewFile();
         }
-        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(lineSeparator);
+        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(lineSeparator).withHeader(fileHeader);
+
         writer = new FileWriter(tagFile);
         csvPrinter = new CSVPrinter(writer, csvFileFormat);
-        csvPrinter.print(fileHeader);
         for( Map.Entry<Commit, List<Commit>> entry : blameMap.entrySet()) {
             Commit key = entry.getKey();
             for (Commit value : entry.getValue()) {
@@ -45,9 +45,9 @@ public class CsvOut {
 
 
                 szzOutput.add(key.getId());
-                szzOutput.add(key.getCommitter().getName());
+                //szzOutput.add(key.getCommitter().getName());
                 szzOutput.add(value.getId());
-                szzOutput.add(value.getGitCommit().getAuthorIdent().getName());
+                //szzOutput.add(value.getGitCommit().getAuthorIdent().getName());
                 csvPrinter.printRecord(szzOutput);
 
             }

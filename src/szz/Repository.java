@@ -37,7 +37,7 @@ public class Repository {
         return this.gitRepository;
     }
 
-    public static Repository getRemoteRepository(String remoteURL) throws IOException, GitAPIException {
+    public static Repository getRemoteRepository(String remoteURL, String repositoryName) throws IOException, GitAPIException {
 
         File repoPath = new File("/Users/usi/Git");
         if(!repoPath.exists()){
@@ -45,7 +45,7 @@ public class Repository {
         }
 
 
-        File localPath = new File(repoPath,remoteURL.substring(21,28));
+        File localPath = new File(repoPath,repositoryName);
         if(!localPath.exists()){
             Git result = Git.cloneRepository().setURI(remoteURL).setDirectory(localPath).call();
             org.eclipse.jgit.lib.Repository repository;
