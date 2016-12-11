@@ -24,9 +24,9 @@ public class Main {
         List<PathChangeModel> plist = commit.getFilesInCommit(true);
         List<Commit> bCommits = new ArrayList<>();
         for (PathChangeModel path : plist) {
-            System.out.println(path.path);
-            System.out.println("deletions:   " + path.deletions);
-            System.out.println("insertions:   " + path.insertions);
+            //System.out.println(path.path);
+            //System.out.println("deletions:   " + path.deletions);
+            //System.out.println("insertions:   " + path.insertions);
 
             Blamer blamer = new Blamer(path, repository);
             //Set<RevCommit> listCommiter = blamer.blameGeneration(commit);
@@ -50,11 +50,12 @@ public class Main {
         if(!args[2].contains("no")) {
 
             List<Issue> issueList = new Issues(urlParts[urlParts.length - 2], repoParts[0]).fetchIssue();
+            System.out.println("Number of Issues in Repository:\t"+ issueList.size());
 
             for(Issue issue: issueList){
 
                 bugNumber.add(String.valueOf(issue.getNumber()));
-                System.out.println(issue.getNumber());
+                //System.out.println(issue.getNumber());
             }
 
         }
@@ -69,7 +70,7 @@ public class Main {
                 if(args[2].contains("no")) {
                     if (commit.isLikelyBugFixingCommit()) {
                         commitCounter++;
-                        System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
+                        //System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
                         int fileCounter = 0;
                         findBugInducingCommits(commit, fileCounter, repository, blameMap);
                     }
@@ -84,13 +85,14 @@ public class Main {
                     }
                     if ((commit.isLikelyBugFixingCommit())&& match) {
                         commitCounter++;
-                        System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
+                        //System.out.println("(#" + commitCounter + ") + bug fixing commit \t" + commit);
                         int fileCounter = 0;
                         findBugInducingCommits(commit, fileCounter, repository, blameMap);
                     }
 
                 }
             }
+            System.out.println("BugFix commits found:\t"+commitCounter);
 
         } else{
             flag=true;

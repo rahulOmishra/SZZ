@@ -74,7 +74,7 @@ public class Diff {
                                 RevCommit blamedCommit = bResult.getSourceCommit(j);
 
                                 bCommits.add(new Commit(repository,blamedCommit));
-                                System.out.println("Blamed commit:  " + blamedCommit  + "   Author:  " + bResult.getSourceAuthor(j));
+                                //System.out.println("Blamed commit:  " + blamedCommit  + "   Author:  " + bResult.getSourceAuthor(j));
 
 
                             }
