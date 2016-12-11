@@ -34,7 +34,7 @@ public class CsvOut {
         if(!tagFile.exists()){
             tagFile.createNewFile();
         }
-        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(lineSeparator).withHeader(fileHeader);
+        CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(lineSeparator).withHeader(fileHeader.trim());
 
         writer = new FileWriter(tagFile);
         csvPrinter = new CSVPrinter(writer, csvFileFormat);

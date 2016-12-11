@@ -99,7 +99,7 @@ public class Main {
             Commit commit= new Commit(repository,RW
                     .parseCommit(repository.getGitRepository()
                             .resolve(commitHash)));
-            //RW.dispose();
+            RW.dispose();
 
             System.out.println(" bug fixing commit \t" + commit);
             int fileCounter=0;

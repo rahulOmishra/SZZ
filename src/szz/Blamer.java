@@ -20,9 +20,6 @@ import java.io.IOException;
 import java.io.ByteArrayInputStream;
 import org.apache.commons.io.IOUtils;
 
-import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 
 
 public class Blamer
