@@ -34,30 +34,51 @@ public class Commit {
         this.committer = gitCommit.getCommitterIdent();
 
     }
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Commit)) {
+            return false;
+        }
+        Commit other = (Commit) obj;
+        return this.id.equals(other.id);
+    }
+    @Override
 
+    public int hashCode() {
+        return id.hashCode();
+    }
     public String getId() {
+
         return id;
     }
 
     public void setId(String id) {
+
         this.id = id;
     }
 
     public PersonIdent getCommitter() {
+
         return committer;
     }
 
     public void setCommitter(PersonIdent commiter) {
+
         this.committer = commiter;
     }
 
     public String getMessage() {
+
         return message;
     }
     public RevCommit getGitCommit() {
         return gitCommit;
     }
     public void setMessage(String message) {
+
         this.message = message;
     }
 
@@ -98,7 +119,7 @@ public class Commit {
             }
 
         } catch (RevisionSyntaxException | org.eclipse.jgit.errors.MissingObjectException | GitAPIException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
 
         rw.dispose();

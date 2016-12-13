@@ -48,6 +48,7 @@ public class Main {
 
         Repository repository = Repository.getRemoteRepository(REMOTE_URL,urlParts[urlParts.length - 2]+repoParts[0].toUpperCase());
         if(!args[2].contains("no")) {
+            //System.out.println(urlParts[urlParts.length - 2]+repoParts[0]);
 
             List<Issue> issueList = new Issues(urlParts[urlParts.length - 2], repoParts[0]).fetchIssue();
             System.out.println("Number of Issues in Repository:\t"+ issueList.size());
@@ -63,7 +64,7 @@ public class Main {
         if(args[1].contains("no")){
             List<Commit> commitList = repository.getCommits();
             int commitCounter = 0;
-            System.out.println(commitList.size());
+            System.out.println("Number of commits in repository: \t"+commitList.size());
 
             for (Commit commit : commitList) {
 
@@ -109,6 +110,8 @@ public class Main {
 
         }
         new CsvOut().writeToCSV(repoParts[0],blameMap);
+
+
     }
 }
 

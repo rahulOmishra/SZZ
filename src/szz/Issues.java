@@ -31,13 +31,10 @@ public class Issues {
 
         GitHubClient git=new GitHubClient();
         git.setCredentials("TheMask", "sugandh4");
-        //git.setCredentials("rahmosh", "Ramkrishna@3");
-
-
         RepositoryService repoService=new RepositoryService(git);
         IssueService issueService=new IssueService(git);
         Repository repo= repoService.getRepository(user, repository);
-//        System.out.println(repo.getOpenIssues());
+        System.out.println(repo.getOpenIssues());
         Map<String, String> paramIssue=new HashMap<>();
         paramIssue.put("sort", "created");
         List<Issue> issueList=issueService.getIssues(user,repository,paramIssue);
