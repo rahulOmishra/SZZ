@@ -68,9 +68,10 @@ public class CsvOut {
         System.out.println(fixCommit.size());
         System.out.println(induceCommit.size());
 
-        new CommitPlot("Bug Inducing relationship", "", fixCommit,induceCommit);
-        CommitPlot.showPlot(fixCommit,induceCommit);
-
+      //  new CommitPlot("Bug Inducing relationship", "", fixCommit,induceCommit);
+       // CommitPlot.showPlot(fixCommit,induceCommit);
+        new CommitPlot("Bug Inducing relationship", "", blameMap);
+        CommitPlot.showPlot(blameMap);
         writer.close();
         csvPrinter.close();
     }
