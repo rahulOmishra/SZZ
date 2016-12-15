@@ -83,11 +83,12 @@ public class Commit {
     }
 
     public boolean isLikelyBugFixingCommit() {
-        return (this.message.toLowerCase().contains("fixes")  ||
+        return ((this.message.toLowerCase().contains("fixes") ||
                 this.message.toLowerCase().contains("fixed")  ||
                 this.message.toLowerCase().contains("closes") ||
                 this.message.toLowerCase().contains("fix")    ||
-                this.message.toLowerCase().contains("closed"));
+                this.message.toLowerCase().contains("closed"))
+                &&this.message.contains("#"));
     }
 
     public List<PathModel.PathChangeModel> getFilesInCommit(boolean calculateDiffStat) throws java.lang.Exception {

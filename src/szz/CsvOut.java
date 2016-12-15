@@ -3,6 +3,7 @@ package szz;
 import java.io.File;
 import java.io.IOException;
 import java.io.FileWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -23,7 +24,7 @@ public class CsvOut {
     private  String fileHeader = "BugFix-CommitId,BugInducing-CommitId";
 
 
-    public void writeToCSV(String fileName, Map<Commit, List<Commit>> blameMap) throws IOException {
+    public void writeToCSV(String fileName, Map<Commit, List<Commit>> blameMap) throws IOException, ParseException {
 
         FileWriter writer = null;
         CSVPrinter csvPrinter = null;
