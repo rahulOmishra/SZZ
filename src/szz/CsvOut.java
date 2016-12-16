@@ -71,8 +71,8 @@ public class CsvOut {
 
       //  new CommitPlot("Bug Inducing relationship", "", fixCommit,induceCommit);
        // CommitPlot.showPlot(fixCommit,induceCommit);
-        new CommitPlot("Bug Inducing relationship", "", blameMap);
-        CommitPlot.showPlot(blameMap);
+        new CommitPlot("Bug Inducing relationship", "", blameMap, fixCommit.size());
+        CommitPlot.showPlot(blameMap,fixCommit.size());
         writer.close();
         csvPrinter.close();
     }
