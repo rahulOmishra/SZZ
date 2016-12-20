@@ -109,15 +109,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/org.eclipse.egit.github.core-1.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/httpcomponents-client-4.5.2/lib/httpcore-4.4.4.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -173,6 +164,24 @@
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/jfreechart-1.0.19/lib/jcommon-1.0.23.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/jfreesvg-3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/Downloads/org.eclipse.egit.github.core-2.1.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

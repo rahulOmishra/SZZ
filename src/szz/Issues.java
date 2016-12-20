@@ -4,6 +4,7 @@ package szz;
  * Created by usi on 12/6/16.
  */
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,6 +19,11 @@ public class Issues {
 
     private String user;
     private String repository;
+    private Date created;
+    private Date closed;
+    private int number;
+    private String Assignee;
+
 
 
     public Issues(String user,String repository){
@@ -34,10 +40,14 @@ public class Issues {
         RepositoryService repoService=new RepositoryService(git);
         IssueService issueService=new IssueService(git);
         Repository repo= repoService.getRepository(user, repository);
-        System.out.println(repo.getOpenIssues());
+        //System.out.println(repo.getOpenIssues());
         Map<String, String> paramIssue=new HashMap<>();
-        paramIssue.put("sort", "created");
+        //paramIssue.put("sort", "created");
+       paramIssue.put("state","closed");
+
         List<Issue> issueList=issueService.getIssues(user,repository,paramIssue);
+        //List<Issue> issueList=issueService.getIssues(repository,paramIssue);
+        //System.out.println("issuelist size------------->                  "+issueList.size());
         return issueList;
 
     }

@@ -12,6 +12,7 @@ import java.util.Set;
 
 import org.apache.commons.csv.CSVPrinter;
 import org.apache.commons.csv.CSVFormat;
+import org.eclipse.egit.github.core.Issue;
 
 
 /**
@@ -24,7 +25,7 @@ public class CsvOut {
     private  String fileHeader = "BugFix-CommitId,BugInducing-CommitId";
 
 
-    public void writeToCSV(String fileName, Map<Commit, List<Commit>> blameMap) throws IOException, ParseException {
+    public void writeToCSV(String fileName, Map<Commit, List<Commit>> blameMap, Map<Commit, List<Issue>> issueMap, String user, String repositoryName ) throws IOException, ParseException {
 
         FileWriter writer = null;
         CSVPrinter csvPrinter = null;
@@ -71,8 +72,8 @@ public class CsvOut {
 
       //  new CommitPlot("Bug Inducing relationship", "", fixCommit,induceCommit);
        // CommitPlot.showPlot(fixCommit,induceCommit);
-        new CommitPlot("Bug Inducing relationship", "", blameMap, fixCommit.size());
-        CommitPlot.showPlot(blameMap,fixCommit.size());
+        new CommitPlot("Bug Inducing relationship", "", blameMap, fixCommit.size(),issueMap,user,repositoryName);
+        CommitPlot.showPlot(blameMap,fixCommit.size(),issueMap);
         writer.close();
         csvPrinter.close();
     }
